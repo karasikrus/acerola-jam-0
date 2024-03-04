@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Start And Options"
+config/name="Frame Changer"
 run/main_scene="res://scenes/menu/main_menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -33,6 +33,10 @@ jump={
 [layer_names]
 
 2d_physics/layer_1="player"
+2d_physics/layer_2="frame"
+2d_physics/layer_3="frame_border"
+2d_physics/layer_4="ground"
+2d_physics/layer_5="frame_area"
 
 [rendering]
 

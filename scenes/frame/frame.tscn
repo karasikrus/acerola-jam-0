@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://b10n12mlxvfwp"]
+
+[ext_resource type="Script" path="res://scenes/frame/frame.gd" id="1_k7kdw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hofdf"]
+resource_local_to_scene = true
+size = Vector2(400, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g42or"]
+resource_local_to_scene = true
+size = Vector2(400, 300)
+
+[node name="Frame" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 6
+script = ExtResource("1_k7kdw")
+
+[node name="Control" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 400.0
+offset_bottom = 300.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0.431373)
+
+[node name="ColorRect" type="ColorRect" parent="Control/ColorRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 26.0
+grow_horizontal = 2
+mouse_filter = 2
+color = Color(0, 0.572549, 0.988235, 1)
+
+[node name="FrameTitleArea2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 17
+
+[node name="CollisionShapeTitle" type="CollisionShape2D" parent="FrameTitleArea2D"]
+position = Vector2(200, 12.5)
+shape = SubResource("RectangleShape2D_hofdf")
+debug_color = Color(0, 0.6, 0.701961, 0.560784)
+
+[node name="CollisionShapeFrame" type="CollisionShape2D" parent="."]
+position = Vector2(200, 150)
+shape = SubResource("RectangleShape2D_g42or")
+debug_color = Color(0, 0.6, 0.701961, 0.560784)
+
+[connection signal="mouse_entered" from="FrameTitleArea2D" to="." method="on_mouse_entered"]
+[connection signal="mouse_exited" from="FrameTitleArea2D" to="." method="on_mouse_exited"]
