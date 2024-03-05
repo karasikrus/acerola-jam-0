@@ -1,6 +1,10 @@
 extends CharacterBody2D
 class_name Player
 
+@onready var sprite_2d = $Sprite2D
+
+
+
 # BASIC MOVEMENT VARAIABLES ---------------- #
 var face_direction := 1
 var x_dir := 1
