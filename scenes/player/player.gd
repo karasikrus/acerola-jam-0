@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 @onready var sprite_2d = $Sprite2D
+@onready var animation_player = $AnimationPlayer
 
 
 
@@ -56,6 +57,11 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
+func _process(delta):
+	animate()
+	flip_sprite()
+
+
 func x_movement(delta: float) -> void:
 	x_dir = get_input()["x"]
 	
@@ -86,7 +92,7 @@ func set_direction(hor_direction) -> void:
 	# To animate, only scale the sprite
 	if hor_direction == 0:
 		return
-	apply_scale(Vector2(hor_direction * face_direction, 1)) # flip
+	#apply_scale(Vector2(hor_direction * face_direction, 1)) # flip
 	face_direction = hor_direction # remember direction
 
 
@@ -152,3 +158,22 @@ func timers(delta: float) -> void:
 	jump_coyote_timer -= delta
 	jump_buffer_timer -= delta
 
+
+func animate() -> void:
+	if is_on_floor():
+		if abs(velocity.x) > 0.5:
+			animation_player.play("run")
+		else:
+			animation_player.play("idle")
+	else:
+		if velocity.y > 0:
+			animation_player.play("fall")
+		else: 
+			animation_player.play("jump")
+
+func flip_sprite() -> void:
+	if face_direction > 0:
+		sprite_2d.flip_h = false
+	else:
+		sprite_2d.flip_h = true
+	

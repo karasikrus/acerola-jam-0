@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://h51soakekelv"]
 
 [ext_resource type="Script" path="res://scenes/player/clone/player_clone.gd" id="1_8jm67"]
-[ext_resource type="Texture2D" uid="uid://bgu4lnsafosmc" path="res://icon.svg" id="2_bb2tt"]
+[ext_resource type="Texture2D" uid="uid://04bgw5nvt8vw" path="res://scenes/player/character-export.png" id="2_rxvit"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j8ttj"]
 
@@ -13,7 +13,10 @@ script = ExtResource("1_8jm67")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 modulate = Color(0, 0.894118, 0.34902, 1)
-texture = ExtResource("2_bb2tt")
+texture_filter = 1
+texture = ExtResource("2_rxvit")
+hframes = 4
+vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_j8ttj")

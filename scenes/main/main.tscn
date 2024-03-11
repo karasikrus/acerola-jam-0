@@ -19,6 +19,7 @@ polygon = PackedVector2Array(13, 642, 10, 368, 93, 369, 92, 600, 355, 600, 626, 
 
 [node name="Player" parent="." instance=ExtResource("2_dxv80")]
 position = Vector2(513, 282)
+scale = Vector2(2.00358, 2.1726)
 collision_mask = 8
 
 [node name="Frame" parent="." instance=ExtResource("3_uo74j")]

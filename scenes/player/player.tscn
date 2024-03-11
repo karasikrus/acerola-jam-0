@@ -1,21 +1,122 @@
-[gd_scene load_steps=4 format=3 uid="uid://byqoej66h7bf7"]
+[gd_scene load_steps=10 format=3 uid="uid://byqoej66h7bf7"]
 
-[ext_resource type="Texture2D" uid="uid://bgu4lnsafosmc" path="res://icon.svg" id="1_npvp4"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_pmxfk"]
+[ext_resource type="Texture2D" uid="uid://04bgw5nvt8vw" path="res://scenes/player/character-export.png" id="2_dcy8a"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qjpin"]
-radius = 27.0
-height = 58.0
+radius = 7.0
+height = 22.0
+
+[sub_resource type="Animation" id="Animation_t8gwa"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_48gxy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ud0xq"]
+resource_name = "run"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_fxcxe"]
+resource_name = "jump"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_2ce5e"]
+resource_name = "fall"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hhg6w"]
+_data = {
+"RESET": SubResource("Animation_48gxy"),
+"fall": SubResource("Animation_2ce5e"),
+"idle": SubResource("Animation_t8gwa"),
+"jump": SubResource("Animation_fxcxe"),
+"run": SubResource("Animation_ud0xq")
+}
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 14
 script = ExtResource("1_pmxfk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-3.8147e-06, -26)
+texture_filter = 1
+position = Vector2(0, -13)
 scale = Vector2(0.40625, 0.40625)
-texture = ExtResource("1_npvp4")
+texture = ExtResource("2_dcy8a")
+hframes = 4
+vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -30)
+visible = false
+position = Vector2(0, -11)
 shape = SubResource("CapsuleShape2D_qjpin")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hhg6w")
+}
